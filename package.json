@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/christiancheng/imgNode/issues"
   },
-  "homepage": "https://github.com/christiancheng/imgNode#readme"
+  "homepage": "https://github.com/christiancheng/imgNode#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
