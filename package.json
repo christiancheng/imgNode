@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/christiancheng/imgNode#readme",
   "dependencies": {
-    "express": "^4.13.4",
-    "express-handlebars": "^3.0.0"
+    "express": "^3.5.3",
+    "express-handlebars": "^3.0.0",
+    "express3-handlebars": "^0.5.2"
   }
 }
