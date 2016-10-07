@@ -4,7 +4,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var app     = express();
 
-app.get('/scrape', function(req, res){
+app.get('/', function(req, res){
 
     console.log('test');
 
