@@ -1,4 +1,4 @@
-# imgNode
+# tritonPlanner
 
 Written using: Javascript, Node.js, Express.js, MongoDB
 
