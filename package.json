@@ -8,5 +8,8 @@
     "express"    : "latest",
     "request"    : "latest",
     "cheerio"    : "latest"
+  },
+  "engines": {
+    "node": "5.7.0"
   }
 }
