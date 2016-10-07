@@ -29,12 +29,14 @@ app.get('/', function(req, res){
             courseName = data.text();
             course.courseName = courseName;
 
+            /*
             fs.writeFile('output.json', JSON.stringify(course, null, 4),
                 function(err){
 
-      console.log(course);
+              console.log(course);
 
-  })
+            })
+            */
       
         })
 
