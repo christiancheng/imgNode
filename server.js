@@ -18,17 +18,19 @@ app.get('/scrape', function(req, res){
         var courseNum, courseName, courseUnits;
         var json = { courseNum : "", courseName : "", courseUnits : ""};
 
-        $('.course-name').filter(function() {
+        $('p.course-name').filter(function() {
 
             var data = $(this);
-            courseName = data.first().text();
+            courseName = data.text();
             json.courseName = courseName;
       
         })
 
+        json.courseNum = '0';
+        json.courseUnits = '4';
+
     }
 
-  })
 
   fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
 
@@ -42,6 +44,7 @@ app.get('/scrape', function(req, res){
   res.send('Check your console!')
 
       }) ;
+})
 
 
 
