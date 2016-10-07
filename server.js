@@ -2,7 +2,17 @@ var express = require('express');
 var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
+var mongodb = require('mongodb');
 var app     = express();
+var MongoClient = mongodb.MongoClient;
+var CSEcourses = 'mongodb://localhost:8081/CSEcourses';
+
+MongoClient.connect(CSEcourses, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    //HURRAY!! We are connected. :)
+    console.log('Connection established to', CSEcourses);
 
 app.get('/scrape', function(req, res){
 
@@ -14,30 +24,32 @@ app.get('/scrape', function(req, res){
       if (!error) {
         
         var $ = cheerio.load(html);
+        var i = 0;
 
         var courseNum, courseName, courseUnits;
-        var json = { courseNum : "", courseName : "", courseUnits : ""};
+        
+        $('p.course-name').each(function() {
 
-        $('p.course-name').filter(function() {
-
-            var data = $(this);
+            ++i;
+            if (i > 30) return false;
+            var course = { courseNum : "", courseName : "", courseUnits : ""};
+            data = $(this);
             courseName = data.text();
-            json.courseName = courseName;
+            course.courseName = courseName;
+
+            fs.writeFile('output.json', JSON.stringify(course, null, 4),
+                function(err){
+
+      console.log(course);
+
+  })
       
         })
-
-        json.courseNum = '0';
-        json.courseUnits = '4';
 
     }
 
 
-  fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
-
-      console.log('File successfully written! - Check your project directory'
-          + ' for the output.json file');
-
-  })
+  
 
   // Finally, we'll just send out a message to the browser reminding you that
   // this app does not have a UI.
@@ -45,6 +57,10 @@ app.get('/scrape', function(req, res){
 
       }) ;
 })
+
+db.close();
+  }
+});
 
 
 
