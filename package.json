@@ -1,24 +1,12 @@
 {
-  "name": "imgnode",
-  "version": "1.0.0",
-  "description": "Learning Node.js and MongoDB",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/christiancheng/imgNode.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/christiancheng/imgNode/issues"
-  },
-  "homepage": "https://github.com/christiancheng/imgNode#readme",
-  "dependencies": {
-    "express": "^3.5.3",
-    "express-handlebars": "^3.0.0",
-    "express3-handlebars": "^0.5.2"
+  "name"         : "ucsdScraper",
+  "version"      : "0.0.1",
+  "description"  : "Scrape ucsd.",
+  "main"         : "server.js",
+  "author"       : "christiancheng",
+  "dependencies" : {
+    "express"    : "latest",
+    "request"    : "latest",
+    "cheerio"    : "latest"
   }
 }
