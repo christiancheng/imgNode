@@ -23,31 +23,25 @@ app.get('/', function(req, res){
         $('p.course-name').each(function() {
 
             ++i;
-            if (i > 30) return false;
+            //if (i > 30) return false;
             var course = { courseNum : "", courseName : "", courseUnits : ""};
             data = $(this);
             courseName = data.text();
             course.courseName = courseName;
+            console.log(course);
 
             /*
             fs.writeFile('output.json', JSON.stringify(course, null, 4),
                 function(err){
 
-              console.log(course);
+              
 
             })
             */
       
         })
 
-    }
-
-
-  
-
-  // Finally, we'll just send out a message to the browser reminding you that
-  // this app does not have a UI.
-  res.send('Check your console!')
+      }
 
       }) ;
 })
