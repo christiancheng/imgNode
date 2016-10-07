@@ -6,6 +6,8 @@ var app     = express();
 
 app.get('/scrape', function(req, res){
 
+    console.log('test');
+
   // Scraping from UCSD's CSE course catalog  
   url = 'http://www.ucsd.edu/catalog/courses/CSE.html';
 
