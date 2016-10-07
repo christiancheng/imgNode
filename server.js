@@ -2,17 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
-var mongodb = require('mongodb');
 var app     = express();
-var MongoClient = mongodb.MongoClient;
-var CSEcourses = 'mongodb://localhost:8081/CSEcourses';
-
-MongoClient.connect(CSEcourses, function (err, db) {
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-    //HURRAY!! We are connected. :)
-    console.log('Connection established to', CSEcourses);
 
 app.get('/scrape', function(req, res){
 
@@ -57,10 +47,6 @@ app.get('/scrape', function(req, res){
 
       }) ;
 })
-
-db.close();
-  }
-});
 
 
 

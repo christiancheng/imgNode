@@ -7,7 +7,6 @@
   "dependencies" : {
     "express"    : "latest",
     "request"    : "latest",
-    "cheerio"    : "latest",
-    "mongodb"    : "latest"
+    "cheerio"    : "latest"
   }
 }
