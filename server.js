@@ -30,7 +30,7 @@ app.get('/scrape', function(req, res){
 
   })
 
-}
+})
 
 fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
 
