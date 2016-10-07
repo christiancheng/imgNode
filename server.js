@@ -30,14 +30,14 @@ app.get('/', function(req, res){
             course.courseName = courseName;
             console.log(course);
 
-            /*
+            
             fs.writeFile('output.json', JSON.stringify(course, null, 4),
                 function(err){
 
               
 
             })
-            */
+            
       
         })
 
