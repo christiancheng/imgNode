@@ -33,7 +33,17 @@
 
     Welcome to tritonPlanner!
 
-    <div class = "container" ng-view>
+    <div class = "container">
+      <table class="table table-hover">
+        <tbody>
+          <tr ng-repeat="course in courses | orderBy:'courseNum'" style="cursor:pointer">
+          <td>
+            <a ng-href="#/courses/{{course._id}}">{{ course.courseNum }} {{
+              course.courseName }}</a>
+          </td>
+        </tr>
+    </tbody>
+      </table>
     </div>
 
   </body>

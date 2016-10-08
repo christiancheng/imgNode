@@ -6,8 +6,8 @@ angular.module("tritonPlanner", ['ngRoute'])
       templateUrl: "index.html",
       controller: "homeController",
       resolve: {
-        contacts: function(Contacts) {
-            return Contacts.getContacts();
+        courses: function(Courses) {
+            return Courses.getCourse();
         }
       }
     })
@@ -27,3 +27,19 @@ angular.module("tritonPlanner", ['ngRoute'])
     })
 })
 
+
+.service("Courses", function($http) {
+  this.getCourse = function(courseId) {
+    var url = "/contacts/" + courseId;
+    return $http.get(url).
+      then(function(response) {
+          return response;
+      }, function(response) {
+          alert("Error finding this course.");
+      });
+  }
+})
+
+.controller("homeController", function(courses, $scope) {
+  $scope.courses = courses.data;
+})
