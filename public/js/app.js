@@ -1,3 +1,4 @@
+// Pass templates through the route provider
 angular.module("tritonPlanner", ['ngRoute'])
 .config(function($routeProvider) {
   $routeProvider
@@ -7,7 +8,7 @@ angular.module("tritonPlanner", ['ngRoute'])
       controller: "homeController",
       resolve: {
         courses: function(Courses) {
-            return Courses.getCourse();
+            return Courses.getCourses();
         }
       }
     })
@@ -27,8 +28,20 @@ angular.module("tritonPlanner", ['ngRoute'])
     })
 })
 
-
+// Get courses from the database using services
 .service("Courses", function($http) {
+
+  // Get all courses
+  this.getCourses = function() {
+      return $http.get("/courses").
+        then(function(response) {
+            return response;
+        }, function(response) {
+            alert("Error retrieving courses.");
+        });
+    }
+
+  // Get a specific course
   this.getCourse = function(courseId) {
     var url = "/contacts/" + courseId;
     return $http.get(url).
@@ -40,6 +53,7 @@ angular.module("tritonPlanner", ['ngRoute'])
   }
 })
 
+// Pass data from services to view controller
 .controller("homeController", function(courses, $scope) {
   $scope.courses = courses.data;
 })
