@@ -34,6 +34,26 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 });
 
 
+// Generic error handler
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+
+
+// GET a course from the collection
+app.get("/courses/:id", function(req, res) {
+  db.collection(COURSES_COLLECTION).findOne({ _id: new ObjectID(req.params.id)
+  }, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to retrieve course.");
+    } else {
+      res.status(200).json(doc);  
+    }
+  });
+});
+
+
 // Scrapes UCSD's CSE course catalog
 app.get('/scrape', function(req, res){
 
@@ -72,20 +92,6 @@ app.get('/scrape', function(req, res){
         console.log(course.courseNum + " added to collection.");
 
         db.collection(COURSES_COLLECTION).insert(course);
-
-        /*
-        db.collection(COURSES_COLLECTION).insertOne(course, function(err,
-              doc) {
-
-          if (err) {
-            handleError(res, err.message, "Failed to add course.");
-          } else {
-            res.status(201).json(doc.ops[0]);
-          }
-         });
-          //fs.writeFile('output.json', JSON.stringify(course, null, 4),
-          //function(err){
-        */
 
       }) // End iteration 
 
