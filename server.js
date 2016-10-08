@@ -67,11 +67,11 @@ app.get('/scrape', function(req, res){
         course.courseName = courseInfo.slice(firstSplit + 2, secondSplit - 1);
         course.courseUnits = courseInfo.charAt(secondSplit + 1);
         
-        console.log(course);
+        console.log(courseNum + " added to collection.");
 
         db.collection(COURSES_COLLECTION).insert(course);
-        /*
 
+        /*
         db.collection(COURSES_COLLECTION).insertOne(course, function(err,
               doc) {
 
@@ -81,11 +81,13 @@ app.get('/scrape', function(req, res){
             res.status(201).json(doc.ops[0]);
           }
          });
-        */
-        
           //fs.writeFile('output.json', JSON.stringify(course, null, 4),
           //function(err){
+        */
+
       }) // End iteration 
+
+      console.log("Finished scraping.");
     } // Endif
   }); // End request
 });
