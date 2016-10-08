@@ -47,6 +47,9 @@ app.get('/scrape', function(req, res){
       
       // Load the webpage html
       var $ = cheerio.load(html);
+
+      // Clear the collection
+      db.collection(COURSES_COLLECTION).deleteMany({});
       
       // Iterate through the courses
       $('p.course-name').each(function() {
