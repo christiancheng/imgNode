@@ -39,8 +39,9 @@ app.get('/scrape', function(req, res){
 
   console.log('Initializing scraping...');
 
-  request("http://www.ucsd.edu/catalog/courses/CSE.html", function(error,
-    response, html) {
+  url = 'http://www.ucsd.edu/catalog/courses/CSE.html';
+
+  request(url, function(error, response, html) {
 
     if (!error) {
       
@@ -68,7 +69,6 @@ app.get('/scrape', function(req, res){
         db.collection(COURSES_COLLECTION).insertOne(course, function(err,
               doc) {
 
-                
           if (err) {
             handleError(res, err.message, "Failed to add course.");
           } else {
