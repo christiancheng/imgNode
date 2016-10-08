@@ -65,7 +65,7 @@ app.post('/scrape', function(req, res){
             if (err) {
               handleError(res, err.message, "Failed to add course.");
             } else {
-              res.status(201).json(doc.ops[o]);
+              res.status(201).json(doc.ops[0]);
             }
            });
           
