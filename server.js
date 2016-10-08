@@ -43,35 +43,35 @@ app.post('/scrape', function(req, res){
 
   request(url, function(error, response, html) {
 
-      if (!error) {
+    if (!error) {
+      
+      // Load the webpage html
+      var $ = cheerio.load(html);
+      var courseNum, courseName, courseUnits;
+      
+      // Iterate through the courses
+      $('p.course-name').each(function() {
+
+        var course = { courseNum : "", courseName : "", courseUnits : ""};
+        data = $(this);
+
+        courseName = data.text();
+        course.courseName = courseName;
+        console.log(course);
+
+        db.collection(COURSES_COLLECTION).insertOne(course, function(err,
+              doc) {
+
+          if (err) {
+            handleError(res, err.message, "Failed to add course.");
+          } else {
+            res.status(201).json(doc.ops[0]);
+          }
+         });
         
-        // Load the webpage html
-        var $ = cheerio.load(html);
-        var courseNum, courseName, courseUnits;
-        
-        // Iterate through the courses
-        $('p.course-name').each(function() {
-
-          var course = { courseNum : "", courseName : "", courseUnits : ""};
-          data = $(this);
-
-          courseName = data.text();
-          course.courseName = courseName;
-          console.log(course);
-
-          db.collection(COURSES_COLLECTION).insertOne(course, function(err,
-                doc) {
-
-            if (err) {
-              handleError(res, err.message, "Failed to add course.");
-            } else {
-              res.status(201).json(doc.ops[0]);
-            }
-           });
-          
-            //fs.writeFile('output.json', JSON.stringify(course, null, 4),
-            //function(err){
-        }) // End iteration 
-      } // Endif
+          //fs.writeFile('output.json', JSON.stringify(course, null, 4),
+          //function(err){
+      }) // End iteration 
+    } // Endif
   }); // End request
 });
