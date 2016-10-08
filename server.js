@@ -69,6 +69,9 @@ app.get('/scrape', function(req, res){
         
         console.log(course);
 
+        db.collection(COURSES_COLLECTION).insert(course);
+        /*
+
         db.collection(COURSES_COLLECTION).insertOne(course, function(err,
               doc) {
 
@@ -78,6 +81,7 @@ app.get('/scrape', function(req, res){
             res.status(201).json(doc.ops[0]);
           }
          });
+        */
         
           //fs.writeFile('output.json', JSON.stringify(course, null, 4),
           //function(err){
