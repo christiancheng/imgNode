@@ -35,7 +35,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
 
 // Scrapes UCSD's CSE course catalog
-app.get('/scrape', function(req, res){
+app.post('/scrape', function(req, res){
 
   console.log('Initializing scraping...');
 
