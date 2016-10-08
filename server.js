@@ -37,8 +37,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 // Scrapes UCSD's CSE course catalog
 app.get('/scrape', function(req, res){
 
-  console.log('Initializing scraping...');
-
+  console.log("Requesting url...");
   url = 'http://www.ucsd.edu/catalog/courses/CSE.html';
 
   request(url, function(error, response, html) {
@@ -49,9 +48,11 @@ app.get('/scrape', function(req, res){
       var $ = cheerio.load(html);
 
       // Clear the collection
-      console.log("Clearing all courses from the existing collection.");
+      console.log("Clearing all courses from the existing collection...");
       db.collection(COURSES_COLLECTION).deleteMany({});
       
+      console.log('Initializing scraping...');
+
       // Iterate through the courses
       $('p.course-name').each(function() {
 
@@ -89,6 +90,8 @@ app.get('/scrape', function(req, res){
       }) // End iteration 
 
       console.log("Finished scraping.");
-    } // Endif
+    } else {
+      console.log("Error occurred; scraping failed.");
+    }
   }); // End request
 });
