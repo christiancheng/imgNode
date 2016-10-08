@@ -87,6 +87,7 @@ app.get('/scrape', function(req, res){
         
         course.courseNum = courseInfo.slice(0, firstSplit);
         course.courseName = courseInfo.slice(firstSplit + 2, secondSplit - 1);
+        course.courseName = (course.courseName).replace(/(\r\n|\n|\r)/gm,"");
         course.courseUnits = courseInfo.charAt(secondSplit + 1);
         
         console.log(course.courseNum + " added to collection.");
