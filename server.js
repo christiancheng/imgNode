@@ -49,6 +49,7 @@ app.get('/scrape', function(req, res){
       var $ = cheerio.load(html);
 
       // Clear the collection
+      console.log("Clearing all courses from the existing collection.");
       db.collection(COURSES_COLLECTION).deleteMany({});
       
       // Iterate through the courses
@@ -67,7 +68,7 @@ app.get('/scrape', function(req, res){
         course.courseName = courseInfo.slice(firstSplit + 2, secondSplit - 1);
         course.courseUnits = courseInfo.charAt(secondSplit + 1);
         
-        console.log(courseNum + " added to collection.");
+        console.log(course.courseNum + " added to collection.");
 
         db.collection(COURSES_COLLECTION).insert(course);
 
