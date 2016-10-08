@@ -47,16 +47,23 @@ app.post('/scrape', function(req, res){
       
       // Load the webpage html
       var $ = cheerio.load(html);
-      var courseNum, courseName, courseUnits;
       
       // Iterate through the courses
       $('p.course-name').each(function() {
 
         var course = { courseNum : "", courseName : "", courseUnits : ""};
+        var courseInfo, courseNum, courseName, courseUnits;
         data = $(this);
 
-        courseName = data.text();
-        course.courseName = courseName;
+        courseInfo = data.text();
+
+        var firstSplit = courseInfo.indexOf(".");
+        var secondSplit = courseInfo.indexOf("(");
+        
+        course.courseNum = courseInfo.slice(0, firstSplit);
+        course.courseName = courseInfo.slice(firstSplit + 2, secondSplit - 1);
+        course.courseUnits = courseInfo.charAt(secondSplit + 1);
+        
         console.log(course);
 
         db.collection(COURSES_COLLECTION).insertOne(course, function(err,
