@@ -39,9 +39,8 @@ app.get('/scrape', function(req, res){
 
   console.log('Initializing scraping...');
 
-  url = 'http://www.ucsd.edu/catalog/courses/CSE.html';
-
-  request(url, function(error, response, html) {
+  request("http://www.ucsd.edu/catalog/courses/CSE.html", function(error,
+    response, html) {
 
     if (!error) {
       
