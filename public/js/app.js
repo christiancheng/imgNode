@@ -13,6 +13,16 @@ angular.module("tritonPlanner", ['ngRoute'])
       }
     })
 
+    .when("/courses", {
+      templateUrl: "index.html",
+      controller: "homeController",
+      resolve: {
+        courses: function(Courses) {
+            return Courses.getCourses();
+        }
+      }
+    })
+
     .when("/new/contact", {
         controller: "NewContactController",
         templateUrl: "contact-form.html"
