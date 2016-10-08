@@ -40,6 +40,17 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
+// Get all courses
+app.get("/courses", function(req, res) {
+  db.collection(COURSES_COLLECTION).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get courses.");
+    } else {
+      res.status(200).json(docs);  
+    }
+  });
+});
+
 
 // GET a course from the collection
 app.get("/courses/:id", function(req, res) {
