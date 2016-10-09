@@ -1,5 +1,5 @@
 {
-  "name"         : "ucsdScraper",
+  "name"         : "tritonPlanner",
   "version"      : "0.0.1",
   "description"  : "Scrape ucsd.",
   "main"         : "server.js",
