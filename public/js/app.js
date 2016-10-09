@@ -14,8 +14,8 @@ angular.module("tritonPlanner", ['ngRoute'])
     })
 
     .when("/courses", {
-      templateUrl: "index.html",
-      controller: "homeController",
+      templateUrl: "list.html",
+      controller: "ListController",
       resolve: {
         courses: function(Courses) {
             return Courses.getCourses();
@@ -65,5 +65,9 @@ angular.module("tritonPlanner", ['ngRoute'])
 
 // Pass data from services to view controller
 .controller("homeController", function(courses, $scope) {
+  $scope.courses = courses.data;
+})
+
+.controller("ListController", function(courses, $scope) {
   $scope.courses = courses.data;
 })
