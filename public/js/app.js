@@ -2,7 +2,6 @@
 angular.module("tritonPlanner", ['ngRoute'])
 .config(function($routeProvider) {
   $routeProvider
-
     .when("/", {
       templateUrl: "list.html",
       controller: "ListController",
@@ -11,20 +10,6 @@ angular.module("tritonPlanner", ['ngRoute'])
             return Courses.getCourses();
         }
       }
-    })
-
-    .when("/new/contact", {
-        controller: "NewContactController",
-        templateUrl: "contact-form.html"
-    })
-
-    .when("/contact/:contactId", {
-        controller: "EditContactController",
-        templateUrl: "contact.html"
-    })
-
-    .otherwise({
-        redirectTo: "/"
     })
 })
 
