@@ -13,7 +13,7 @@ angular.module("tritonPlanner", ['ngRoute'])
       }
     })
 
-    .when("/courses", {
+    .when("/courselist", {
       templateUrl: "list.html",
       controller: "ListController",
       resolve: {
