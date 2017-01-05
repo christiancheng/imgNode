@@ -36,7 +36,7 @@
     <div class = "container">
       <table class="table table-hover">
         <tbody>
-          <tr ng-repeat="course in courses | orderBy:'courseNum'" style="cursor:pointer">
+          <tr ng-repeat="course in courses | orderBy:courseNum" >
           <td>
             <a ng-href="#/courses/">{{ course.courseNum }} {{
               course.courseName }}</a>
