@@ -3,7 +3,7 @@ angular.module("tritonPlanner", ['ngRoute'])
 .config(function($routeProvider) {
   $routeProvider
     .when("/", {
-      templateUrl: "list.html",
+      templateUrl: "index.html",
       controller: "ListController",
       resolve: {
         courses: function(Courses) {
